@@ -1,0 +1,39 @@
+
+gA <- function(W)
+    plogis(-1 + 0.5*W)
+
+gR <- function(t,A,W)
+    plogis(- 2 + A - cos(t) * A + 0.5 * W - 0.2 * sqrt(t) * A * W)
+
+h  <- function(t,A,W)
+    plogis(-2 + 0.5*A + 0.1*log(t)*W + 0.2*A*W - 0.2*sin(t)*(A+1)*log(abs(W)))
+
+genData <- function(n, K){
+
+    id <- rep(1:n, each =  K)
+    m <- rep(1:K, n)
+
+    W <- rnorm(n)
+    gA1 <- gA(W)
+    A <- rbinom(n, 1, gA1)
+
+    W <- W[id]
+    A <- A[id]
+
+    Rm <- rbinom(n * K, 1, gR(m, A, W))
+    Lm <- rbinom(n * K, 1, h(m, A, W))
+
+    df <- data.frame(id, m, A, W, Rm, Lm)
+
+    df <- df %>% group_by(id) %>%
+        mutate(tmpR = cumsum(Rm), tmpL = cumsum(Lm),
+               tmpRR = cumsum(tmpR), tmpLL = cumsum(tmpL),
+               Im = (tmpR == 0) * (tmpLL <= 1),
+               Jm = (tmpRR <= 1) * (tmpLL <= 1),
+               Lm = Im * Lm, Rm = Jm * Rm) %>%
+        select(-tmpR, -tmpRR, -tmpL, -tmpLL)
+
+    df <- ungroup(df)
+    return(df)
+
+}

@@ -1,0 +1,16 @@
+Package: survipw
+Type: Package
+Title: Targeted IPW estimator for restricted mean survival time with right censoring
+Version: 0.1.0
+Author: Iván Díaz
+Maintainer: Iván Díaz <ild2005@med.cornell.edu>
+Description: Targeted inverse probability weighted estimator for restricted mean survival time with right censoring, with known asymptotic distribution
+License: GPLv3
+Encoding: UTF-8
+LazyData: true
+Depends: 
+  glm2,
+  tidyverse,
+  np,
+  hal
+RoxygenNote: 6.0.1
