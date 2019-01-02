@@ -1,10 +1,10 @@
-Package: survipw
+Package: survdr
 Type: Package
-Title: Targeted IPW estimator for restricted mean survival time with right censoring
+Title: Targeted MLE for doubly robust inference (p-values, s.e.) of survival probabilities
 Version: 0.1.0
 Author: Iván Díaz
 Maintainer: Iván Díaz <ild2005@med.cornell.edu>
-Description: Targeted inverse probability weighted estimator for restricted mean survival time with right censoring, with known asymptotic distribution
+Description: Targeted MLE for doubly robust inference (p-values, s.e.) of survival probabilities
 License: GPLv3
 Encoding: UTF-8
 LazyData: true
