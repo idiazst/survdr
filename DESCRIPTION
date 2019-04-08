@@ -12,5 +12,5 @@ Depends:
   glm2,
   tidyverse,
   np,
-  hal
+  hal9001
 RoxygenNote: 6.0.1
